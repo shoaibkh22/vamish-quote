@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vanish & Get Inspired</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+text-align: center;
+margin: 50px;
+}
+textarea {
+width: 80%;
+height: 100px;
+font-size: 16px;
+padding: 10px;
+}
+button {
+margin-top: 10px;
+padding: 10px 20px;
+font-size: 18px;
+cursor: pointer;
+}
+.loading {
+display: none;
+font-size: 24px;
+font-weight: bold;
+margin-top: 20px;
+}
+.quote {
+display: none;
+font-size: 20px;
+margin-top: 20px;
+font-style: italic;
+color: #555;
+}
+</style>
+</head>
+<body>
+
+<h2>Write something & let it vanish...</h2>
+<textarea id="userInput" placeholder="Type anything..."></textarea><br>
+<button onclick="vanishText()">Vanish</button>
+
+<div class="loading" id="loading">
+⏳ Spinning the wheel... <br>
+Time left: <span id="countdown">60</span> sec
+</div>
+
+<div class="quote" id="quoteDisplay"></div>
+
+<script>
+const quotes = [
+"Success is not the key to happiness. Happiness is the key to success.",
+"Do what you love, and you'll never work a day in your life.",
+"The only limit to our realization of tomorrow is our doubts of today.",
+"Stay hungry, stay foolish.",
+"Act as if what you do makes a difference. It does.",
+"Dream big and dare to fail.",
+"Believe in yourself and all that you are.",
+"Everything you can imagine is real.",
+"Your time is limited, don’t waste it living someone else’s life.",
+"Keep your face always toward the sunshine—and shadows will fall behind you.",
+"The best way to predict the future is to create it.",
+"Happiness depends upon ourselves.",
+"Doubt kills more dreams than failure ever will.",
+"Make your life a masterpiece; imagine no limitations.",
+"You are enough just as you are.",
+"The biggest risk is not taking any risk.",
+"Turn your wounds into wisdom.",
+"Opportunities don't happen, you create them.",
+"You are stronger than you think.",
+"Live as if you were to die tomorrow. Learn as if you were to live forever.",
+"Don’t watch the clock; do what it does. Keep going.",
+"The harder you work for something, the greater you’ll feel when you achieve it.",
+"Difficult roads often lead to beautiful destinations.",
+"Success is getting what you want. Happiness is wanting what you get.",
+"If you can dream it, you can do it.",
+"It always seems impossible until it's done.",
+"What lies behind us and what lies before us are tiny matters compared to what lies within us.",
+"Be the change that you wish to see in the world.",
+"Believe you can and you’re halfway there.",
+"Do what you can, with what you have, where you are.",
+"Happiness is not something ready-made. It comes from your own actions.",
+"The purpose of our lives is to be happy.",
+"Life isn’t about finding yourself. It’s about creating yourself.",
+"Life is really simple, but we insist on making it complicated.",
+"Life is a succession of lessons which must be lived to be understood.",
+"It does not matter how slowly you go as long as you do not stop.",
+"Only a life lived for others is a life worthwhile.",
+"Everything has beauty, but not everyone sees it.",
+"Do not go where the path may lead, go instead where there is no path and leave a trail.",
+"A journey of a thousand miles begins with a single step.",
+"The greatest wealth is to live content with little.",
+"Don’t cry because it’s over, smile because it happened.",
+"We do not remember days, we remember moments.",
+"In three words I can sum up everything I’ve learned about life: It goes on.",
+"Keep smiling, because life is a beautiful thing and there’s so much to smile about.",
+"Do what you feel in your heart to be right—for you’ll be criticized anyway.",
+"Life is made of ever so many partings welded together.",
+"The only way to do great work is to love what you do.",
+"Your time is now. Start where you are. Use what you have. Do what you can."
+];
+
+function vanishText() {
+document.getElementById("userInput").value = "";
+document.getElementById("loading").style.display = "block";
+document.getElementById("quoteDisplay").style.display = "none";
+
+let timeLeft = 60;
+let countdown = document.getElementById("countdown");
+
+let timer = setInterval(() => {
+timeLeft--;
+countdown.innerText = timeLeft;
+
+if (timeLeft <= 0) {
+clearInterval(timer);
+document.getElementById("loading").style.display = "none";
+
+let randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+document.getElementById("quoteDisplay").innerText = `"${randomQuote}"`;
+document.getElementById("quoteDisplay").style.display = "block";
+}
+}, 1000);
+}
+</script>
+
+</body>
+</html>
